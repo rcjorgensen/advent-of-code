@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "browser-sync start --server --files \"**/*\" --no-open",
+    "format": "prettier . --write"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.3",
+    "prettier": "^3.4.1",
+    "typescript": "^5.7.2"
+  }
+}
