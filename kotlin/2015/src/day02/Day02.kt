@@ -1,8 +1,10 @@
+package day02
+
 import java.io.File
 import java.io.StringReader
 
 fun main() {
-    val text = File("2015/input/day02.txt").readText()
+    val text = File("src/day02/input.txt").readText()
     val parser = Parser(StringReader(text))
     val triples = parser.parseTriples()
 

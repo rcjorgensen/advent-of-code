@@ -1,7 +1,9 @@
+package day05
+
 import java.io.File
 
 fun main() {
-    val lines = File("2015/input/day05.txt").readLines()
+    val lines = File("src/day05/input.txt").readLines()
     val nice = lines.count { isNice(it) }
     println("Part 1: $nice")
     val nice2 = lines.count { isNice2(it) }

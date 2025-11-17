@@ -1,3 +1,5 @@
+package day02
+
 import java.io.Reader
 
 class Parser(private val reader: Reader) {
@@ -28,9 +30,9 @@ class Parser(private val reader: Reader) {
 
     fun parseTriple(): Triple<Int, Int, Int> {
         val l = parseInt()
-        match('x')
+        match()
         val w = parseInt()
-        match('x')
+        match()
         val h = parseInt()
         return Triple(l, w, h)
     }
@@ -46,36 +48,12 @@ class Parser(private val reader: Reader) {
         return parseBuffer.toString().toInt()
     }
 
-    fun parseDirections(): List<Direction> {
-        val directions = mutableListOf<Direction>()
-
-        while (isDirection(currentChar.toChar())) {
-            directions.add(parseDirection())
-        }
-
-        return directions.toList()
-    }
-
-    private fun parseDirection(): Direction {
-        val direction = when (currentChar.toChar()) {
-            '^' -> Direction.North
-            'v' -> Direction.South
-            '>' -> Direction.East
-            '<' -> Direction.West
-            else -> error("Invalid direction: '${currentChar.toChar()}'.")
-        }
-        advance()
-        return direction
-    }
-
-    private fun match(expectedChar: Char) = if (currentChar.toChar() == expectedChar) advance()
-    else error("Expecting \'$expectedChar\' but found \'${currentChar.toChar()}\' instead.")
+    private fun match() = if (currentChar.toChar() == 'x') advance()
+    else error("Expecting \'x\' but found \'${currentChar.toChar()}\' instead.")
 
     private fun skipWhitespace() {
         while (Character.isWhitespace(currentChar.toChar())) advance()
     }
 
     private fun isDigit(ch: Char): Boolean = ch in '0'..'9'
-
-    private fun isDirection(ch: Char): Boolean = ch in listOf('^', 'v', '>', '<')
 }

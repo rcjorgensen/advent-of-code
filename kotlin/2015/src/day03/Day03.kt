@@ -1,8 +1,10 @@
+package day03
+
 import java.io.File
 import java.io.StringReader
 
 fun main() {
-    val text = File("2015/input/day03.txt").readText()
+    val text = File("src/day03/input.txt").readText()
     val parser = Parser(StringReader(text))
     val directions = parser.parseDirections()
 
