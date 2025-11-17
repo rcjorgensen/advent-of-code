@@ -1,7 +1,9 @@
+package day01
+
 import java.io.File
 
 fun main() {
-    val text = File("2015/input/day01.txt").readText()
+    val text = File("src/day01/input.txt").readText()
 
     var firstBasementPos: Int? = null
     var pos = 1

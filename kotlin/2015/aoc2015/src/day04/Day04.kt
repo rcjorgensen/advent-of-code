@@ -1,8 +1,10 @@
+package day04
+
 import java.io.File
 import java.security.MessageDigest
 
 fun main() {
-    val text = File("2015/input/day04.txt").readText()
+    val text = File("src/day04/input.txt").readText()
     val md = MessageDigest.getInstance("MD5")
 
     var i = 1
