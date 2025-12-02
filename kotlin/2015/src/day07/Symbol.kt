@@ -7,10 +7,7 @@ enum class Symbol {
     lshift,
     rshift,
     eof,
-    unknown,
     arrow,
     intLiteral,
     identifier;
-
-    fun isReservedWord() = this in not..rshift
 }
