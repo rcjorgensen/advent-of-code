@@ -20,9 +20,6 @@ fun main() {
     for (range in program.ranges) {
         for (number in range) {
             val digits = number.toString(10)
-//            if (hasPattern(digits)) {
-//                sum += number
-//            }
             if (hasPattern(digits)) {
                 sum += number
             }
@@ -31,6 +28,7 @@ fun main() {
     println(sum)
 }
 
+// Part 1:
 //fun hasPattern(digits: String): Boolean {
 //    if (digits.length % 2 != 0) {
 //        return false
@@ -39,6 +37,7 @@ fun main() {
 //    return parts[0] == parts[1]
 //}
 
+// Part 2:
 fun hasPattern(digits: String): Boolean {
     // pattern length can't exceed half of number length
     val maxPatternLength = digits.length / 2
