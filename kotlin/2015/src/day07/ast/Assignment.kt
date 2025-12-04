@@ -2,8 +2,13 @@ package day07.ast
 
 import day07.Token
 
-class Assignment(val variable: Token, val expression: Expression) : AST() {
+data class Assignment(val variable: Token, val expression: Expression) : AST() {
     override fun emit() {
-        TODO("Not yet implemented")
+        out.print("    val ${variable.text} = ")
+        expression.emit()
+    }
+
+    fun dependsOn(other: Assignment): Boolean {
+        return this.expression.operandNames.contains(other.variable.text)
     }
 }

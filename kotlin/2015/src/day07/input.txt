@@ -14,7 +14,7 @@ dy OR ej -> ek
 hb LSHIFT 1 -> hv
 1 AND bh -> bi
 ih AND ij -> ik
-0 LSHIFT 1 -> t
+c LSHIFT 1 -> t
 ea AND eb -> ed
 km OR kn -> ko
 NOT bw -> bx
@@ -51,7 +51,7 @@ NOT bs -> bt
 kk OR kv -> kw
 ks AND ku -> kv
 hz OR ik -> il
-1674 RSHIFT 1 -> v
+b RSHIFT 1 -> v
 iu RSHIFT 1 -> jn
 fo RSHIFT 5 -> fr
 be AND bg -> bh
@@ -159,6 +159,7 @@ NOT ls -> lt
 lh OR li -> lj
 jr OR js -> jt
 au AND av -> ax
+0 -> c
 he AND hp -> hr
 id AND if -> ig
 et RSHIFT 5 -> ew
@@ -173,7 +174,7 @@ iu RSHIFT 2 -> iv
 NOT hr -> hs
 as RSHIFT 1 -> bl
 kk RSHIFT 2 -> kl
-1674 AND n -> p
+b AND n -> p
 ln AND lp -> lq
 cj AND cp -> cr
 dl AND dn -> do
@@ -187,7 +188,7 @@ gj OR gu -> gv
 he RSHIFT 5 -> hh
 NOT fg -> fh
 hg AND hh -> hj
-1674 OR n -> o
+b OR n -> o
 jk LSHIFT 15 -> jo
 gz LSHIFT 15 -> hd
 cy LSHIFT 15 -> dc
@@ -300,7 +301,7 @@ NOT gw -> gx
 NOT iz -> ja
 1 AND io -> ip
 NOT ag -> ah
-1674 RSHIFT 5 -> f
+b RSHIFT 5 -> f
 NOT cr -> cs
 kb AND kd -> ke
 jr AND js -> ju
@@ -309,7 +310,7 @@ il AND in -> io
 NOT ju -> jv
 du OR dt -> dv
 dd AND do -> dq
-1674 RSHIFT 2 -> d
+b RSHIFT 2 -> d
 jm LSHIFT 1 -> kg
 NOT dq -> dr
 bo OR bu -> bv
@@ -326,11 +327,12 @@ gj RSHIFT 5 -> gm
 g AND i -> j
 gk AND gq -> gs
 dp AND dr -> ds
-1674 RSHIFT 3 -> e
+b RSHIFT 3 -> e
 gl AND gm -> go
 gl OR gm -> gn
 y AND ae -> ag
 hv OR hu -> hw
+1674 -> b
 ab AND ad -> ae
 NOT ac -> ad
 1 AND ht -> hu

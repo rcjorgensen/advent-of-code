@@ -24,22 +24,22 @@ class Scanner(private val source: Source) {
         skipWhiteSpace()
 
         if (source.currentChar == source.eof) {
-            symbol = Symbol.eof
+            symbol = Symbol.EOF
         } else if (isLetter(source.currentChar.toChar())) {
             val idString = scanIdentifier()
             symbol = getIdentifierSymbol(idString)
-            if (symbol == Symbol.identifier) {
-                text = idString
+            if (symbol == Symbol.Identifier) {
+                text = if (isReserved(idString)) "${idString}_" else idString
             }
         } else if (isDigit(source.currentChar.toChar())) {
-            symbol = Symbol.intLiteral
+            symbol = Symbol.IntLiteral
             text = scanIntegerLiteral()
         } else {
             when (source.currentChar.toChar()) {
                 '-' -> {
                     source.advance()
                     source.advance()
-                    symbol = Symbol.arrow
+                    symbol = Symbol.Arrow
                 }
 
                 else -> error("Invalid character: '${source.currentChar.toChar()}'")
@@ -51,12 +51,12 @@ class Scanner(private val source: Source) {
 
     private fun getIdentifierSymbol(idString: String): Symbol {
         return when (idString) {
-            "NOT" -> Symbol.not
-            "AND" -> Symbol.and
-            "OR" -> Symbol.or
-            "LSHIFT" -> Symbol.lshift
-            "RSHIFT" -> Symbol.rshift
-            else -> Symbol.identifier
+            "NOT" -> Symbol.Not
+            "AND" -> Symbol.And
+            "OR" -> Symbol.Or
+            "LSHIFT" -> Symbol.LShift
+            "RSHIFT" -> Symbol.RShift
+            else -> Symbol.Identifier
         }
     }
 
@@ -89,4 +89,6 @@ class Scanner(private val source: Source) {
     private fun isLetter(ch: Char): Boolean = (ch in 'a'..'z') || (ch in 'A'..'Z')
 
     private fun isDigit(ch: Char): Boolean = ch in '0'..'9'
+
+    private fun isReserved(idString: String) = idString in listOf("as", "in", "do", "if", "is")
 }

@@ -1,13 +1,13 @@
 package day07
 
 enum class Symbol {
-    not,
-    and,
-    or,
-    lshift,
-    rshift,
-    eof,
-    arrow,
-    intLiteral,
-    identifier;
+    Not,
+    And,
+    Or,
+    LShift,
+    RShift,
+    EOF,
+    Arrow,
+    IntLiteral,
+    Identifier;
 }
