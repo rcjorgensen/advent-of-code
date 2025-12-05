@@ -10,14 +10,9 @@ class Parser(private val scanner: Scanner) {
     }
 
     private fun parseAssignments(): List<Assignment> {
-        val assignments = mutableListOf<Assignment>()
-        while (scanner.symbol != Symbol.EOF) {
-            assignments.add(parseAssignment())
-        }
-
         val nodes = mutableListOf<TreeNode>()
-        for (assignment in assignments) {
-            nodes.add(TreeNode(assignment))
+        while (scanner.symbol != Symbol.EOF) {
+            nodes.add(TreeNode(parseAssignment()))
         }
 
         for (i in 0..<nodes.size - 1) {
@@ -30,8 +25,7 @@ class Parser(private val scanner: Scanner) {
             }
         }
 
-        assignments.clear()
-
+        val assignments = mutableListOf<Assignment>()
         fun visit(treeNode: TreeNode) {
             if (treeNode.visited) {
                 return

@@ -6,7 +6,7 @@ class Input(private val assignments: List<Assignment>) : AST() {
         out.println("package day07")
         out.println()
         out.println("fun main() {")
-        out.println("    // To solve part 2, run part 1, assign result to `b` and rerun.")
+        out.println("    // To solve part 2, run generated code, assign result to `b` and rerun.")
         for (assignment in assignments) {
             assignment.emit()
         }

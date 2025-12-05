@@ -2,7 +2,7 @@
 package day07
 
 fun main() {
-    // To solve part 2, run part 1, assign result to `b` and rerun.
+    // To solve part 2, run generated code, assign result to `b` and rerun.
     val b = 1674
     val v = b shr 1
     val d = b shr 2
