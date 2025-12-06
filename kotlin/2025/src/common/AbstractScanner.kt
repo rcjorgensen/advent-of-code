@@ -1,21 +1,30 @@
 package common
 
-abstract class AbstractScanner<TSymbol>(protected val source: Source) {
-    var token: Token<TSymbol>
-    val symbol: TSymbol
-        get() = token.symbol
-
+abstract class AbstractScanner(protected val source: Source, k: Int) {
+    private val tokenBuffer = TokenBuffer(k)
     private val scanBuffer = StringBuilder()
 
+    val token: Token
+        get() = lookahead(1)
+
+    val symbol: Symbol
+        get() = lookahead(1).symbol
+
+    val text: String
+        get() = lookahead(1).text
+
+
     init {
-        token = nextToken()
+        repeat(k) { advance() }
     }
 
-    fun advance() {
-        token = nextToken()
+    fun lookahead(i: Int): Token {
+        return tokenBuffer[i - 1]
     }
 
-    abstract fun nextToken(): Token<TSymbol>
+    fun advance() = tokenBuffer.add(nextToken())
+
+    protected abstract fun nextToken(): Token
 
     protected fun skipWhiteSpace() {
         while (Character.isWhitespace(source.currentChar.toChar())) source.advance()

@@ -1,10 +1,13 @@
 package day06
 
+import common.AbstractParser
+import common.AbstractScanner
+import common.Symbol
 import day06.ast.Input
 import day06.ast.MathProblem
 import day06.ast.Transformed
 
-class Parser(private val scanner: Scanner) {
+class Parser(scanner: AbstractScanner) : AbstractParser(scanner) {
     fun parseInput(): Input {
         return Input(parseNumbers(), parseMathOperators())
     }
@@ -18,14 +21,10 @@ class Parser(private val scanner: Scanner) {
         return numbers
     }
 
-    private fun parseMathOperators(): List<MathOperator> {
-        val mathOperators = mutableListOf<MathOperator>()
+    private fun parseMathOperators(): List<Symbol> {
+        val mathOperators = mutableListOf<Symbol>()
         while (scanner.symbol in Symbol.Plus..Symbol.Times) {
-            if (scanner.symbol == Symbol.Plus) {
-                mathOperators.add(MathOperator.Plus)
-            } else if (scanner.symbol == Symbol.Times) {
-                mathOperators.add(MathOperator.Times)
-            }
+            mathOperators.add(scanner.symbol)
             matchCurrentSymbol()
         }
         return mathOperators
@@ -44,18 +43,11 @@ class Parser(private val scanner: Scanner) {
     }
 
     fun parseMathProblem(): MathProblem {
-       val numbers = parseNumbers()
-
-        val op = when (scanner.symbol) {
-            Symbol.Plus -> MathOperator.Plus
-            Symbol.Times -> MathOperator.Times
-            else -> error("Invalid symbol: ${scanner.symbol}")
-        }
+        val numbers = parseNumbers()
+        val mathOperator = scanner.symbol
 
         matchCurrentSymbol()
 
-        return MathProblem(numbers, op)
+        return MathProblem(numbers, mathOperator)
     }
-
-    private fun matchCurrentSymbol() = scanner.advance()
 }

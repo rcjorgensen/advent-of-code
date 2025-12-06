@@ -10,13 +10,13 @@ fun main() {
     val input = File(INPUT_FILE).readText(Charsets.UTF_8).replace("\n", "")
     val grid = Grid(width, height, input.toMutableList())
 
-    println(grid)
+    println(grid.canBeAccessed())
+
     var totalRemoved = 0
     var lastRemoved: Int
     do {
         lastRemoved = grid.remove()
         totalRemoved += lastRemoved
-        println(grid)
     } while (lastRemoved > 0)
     println(totalRemoved)
 }

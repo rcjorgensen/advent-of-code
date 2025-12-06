@@ -1,4 +1,4 @@
-package day06
+package common
 
 class TokenBuffer(private val capacity: Int) {
     private val buffer: Array<Token> = Array(capacity) { Token() }
