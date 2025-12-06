@@ -1,20 +1,9 @@
 package day05
 
 import common.Source
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileReader
-
-const val INPUT_FILE = "src/day05/input.txt"
 
 fun main() {
-    val file = File(INPUT_FILE)
-    val fileReader = FileReader(file, Charsets.UTF_8)
-    val reader = BufferedReader(fileReader)
-    val source = Source(reader)
-    val scanner = Scanner(source)
-    val parser = Parser(scanner)
-    val input = parser.parseInput()
+    val input = Parser(Scanner(Source.fromPath("src/day05/input.txt"))).parseInput()
 
     val part1 = input.ids.count { id -> input.ranges.any { range -> id in range } }
     println(part1)

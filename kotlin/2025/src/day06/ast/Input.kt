@@ -1,5 +1,5 @@
 package day06.ast
 
-import day06.MathOperator
+import common.Symbol
 
-data class Input(val numbers: List<Int>, val mathOperators: List<MathOperator>)
+data class Input(val numbers: List<Int>, val mathOperators: List<Symbol>)

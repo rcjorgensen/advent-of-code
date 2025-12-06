@@ -1,8 +1,11 @@
 package day05
 
+import common.AbstractParser
+import common.AbstractScanner
+import common.Symbol
 import day05.ast.Input
 
-class Parser(private val scanner: Scanner) {
+class Parser(scanner: AbstractScanner) : AbstractParser(scanner) {
     fun parseInput(): Input {
         val ranges = parseRanges()
         val ids = parseIds()
@@ -21,7 +24,7 @@ class Parser(private val scanner: Scanner) {
         val start = scanner.text.toLong()
         matchCurrentSymbol()
         matchCurrentSymbol()
-        val end  = scanner.text.toLong()
+        val end = scanner.text.toLong()
         matchCurrentSymbol()
         return start..end
     }
@@ -34,11 +37,9 @@ class Parser(private val scanner: Scanner) {
         return ids
     }
 
-    private fun parseId(): Long{
+    private fun parseId(): Long {
         val id = scanner.text.toLong()
         matchCurrentSymbol()
         return id
     }
-
-    private fun matchCurrentSymbol() = scanner.advance()
 }

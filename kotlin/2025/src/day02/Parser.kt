@@ -1,10 +1,12 @@
 package day02
 
-import day02.ast.Program
+import common.AbstractParser
+import common.Symbol
+import day02.ast.Input
 
-class Parser(private val scanner: Scanner) {
-    fun parseProgram(): Program {
-        return Program(parseRanges())
+class Parser(scanner: Scanner) : AbstractParser(scanner) {
+    fun parseInput(): Input {
+        return Input(parseRanges())
     }
 
     private fun parseRanges(): List<LongRange> {
@@ -24,6 +26,4 @@ class Parser(private val scanner: Scanner) {
         matchCurrentSymbol()
         return start.text.toLong()..end.text.toLong()
     }
-
-    private fun matchCurrentSymbol() = scanner.advance()
 }

@@ -1,51 +1,31 @@
 package day01
 
+import common.AbstractScanner
 import common.Source
+import common.Symbol
+import common.Token
 
-class Scanner(private val source: Source) {
-    var token: Token
+class Scanner(source: Source) : AbstractScanner(source, 1) {
+    override fun nextToken(): Token {
+        var symbol: Symbol
+        var text = ""
 
-    private val scanBuffer = StringBuilder(10)
-
-    init {
-        token = nextToken()
-    }
-
-    fun advance() {
-        token = nextToken()
-    }
-
-    private fun nextToken(): Token {
         skipWhiteSpace()
 
         if (source.currentChar == source.eof) {
-            return Token.EOF
-        } else  {
-            val direction = source.currentChar.toChar()
-            source.advance()
-            val count = scanIntegerLiteral().toInt()
-            return when (direction) {
-                'L' -> Token.Left(count)
-                else -> Token.Right(count)
+            symbol = Symbol.EOF
+        } else if (isDigit(source.currentChar.toChar())) {
+            symbol = Symbol.IntLiteral
+            text = scanIntegerLiteral()
+        } else {
+            symbol = when (source.currentChar.toChar()) {
+                'L' -> Symbol.Left
+                'R' -> Symbol.Right
+                else -> error("Invalid character: '${source.currentChar.toChar()}'")
             }
-        }
-    }
-
-
-    private fun skipWhiteSpace() {
-        while (Character.isWhitespace(source.currentChar.toChar())) source.advance()
-    }
-
-    private fun scanIntegerLiteral(): String {
-        scanBuffer.clear()
-
-        do {
-            scanBuffer.append(source.currentChar.toChar())
             source.advance()
-        } while (isDigit(source.currentChar.toChar()))
+        }
 
-        return scanBuffer.toString()
+        return Token(symbol, text)
     }
-
-    private fun isDigit(ch: Char): Boolean = ch in '0'..'9'
 }

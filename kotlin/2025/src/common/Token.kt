@@ -1,6 +1,8 @@
 package common
 
-class Token<TSymbol>(val symbol: TSymbol, text: String) {
+class Token(val symbol: Symbol, text: String) {
     var text = text.ifEmpty { symbol.toString() }
     override fun toString() = text
+
+    constructor() : this(Symbol.Unknown, "")
 }

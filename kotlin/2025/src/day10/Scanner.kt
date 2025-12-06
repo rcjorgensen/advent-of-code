@@ -1,11 +1,11 @@
-package day05
+package day10
 
 import common.AbstractScanner
 import common.Source
 import common.Symbol
 import common.Token
 
-class Scanner(source: Source) : AbstractScanner(source, 2) {
+class Scanner(source: Source) : AbstractScanner(source, TODO("Set k")) {
     override fun nextToken(): Token {
         var symbol: Symbol
         var text = ""
@@ -18,10 +18,7 @@ class Scanner(source: Source) : AbstractScanner(source, 2) {
             symbol = Symbol.IntLiteral
             text = scanIntegerLiteral()
         } else {
-            symbol = when (source.currentChar.toChar()) {
-                '-' -> Symbol.Hyphen
-                else -> error("Invalid character: '${source.currentChar.toChar()}'")
-            }
+            TODO("Implement scanner")
             source.advance()
         }
 

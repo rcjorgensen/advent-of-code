@@ -1,33 +1,17 @@
 package day03
 
 import common.Source
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileReader
-
-const val INPUT_FILE = "src/day03/input.txt"
-const val PART = 2
 
 fun main() {
-    val file = File(INPUT_FILE)
-    val fileReader = FileReader(file, Charsets.UTF_8)
-    val reader = BufferedReader(fileReader)
-    val source = Source(reader)
-    val scanner = Scanner(source)
-    val parser = Parser(scanner)
-    val program = parser.parseProgram()
-    var sum = 0L
+    val input = Parser(Scanner(Source.fromPath("src/day03/input.txt"))).parseInput()
 
-    val k = when (PART) {
-        1 -> 1
-        2 -> 11
-        else -> error("Invalid part: $PART")
-    }
+    var sum1 = 0L
+    var sum2 = 0L
 
-    for (bank in program.banks) {
+    for (bank in input.banks) {
         var maxIndex = -1
         val maxes = mutableListOf<Char>()
-        for (n in k downTo 0) {
+        for (n in 1 downTo 0) {
             var max = '0'
             maxIndex++
             for (i in maxIndex..<bank.length - n) {
@@ -39,7 +23,27 @@ fun main() {
             }
             maxes.add(max)
         }
-        sum += String(maxes.toCharArray()).toLong()
+        sum1 += String(maxes.toCharArray()).toLong()
     }
-    println(sum)
+
+    for (bank in input.banks) {
+        var maxIndex = -1
+        val maxes = mutableListOf<Char>()
+        for (n in 11 downTo 0) {
+            var max = '0'
+            maxIndex++
+            for (i in maxIndex..<bank.length - n) {
+                val d = bank[i]
+                if (d > max) {
+                    max = d
+                    maxIndex = i
+                }
+            }
+            maxes.add(max)
+        }
+        sum2 += String(maxes.toCharArray()).toLong()
+    }
+
+    println(sum1)
+    println(sum2)
 }

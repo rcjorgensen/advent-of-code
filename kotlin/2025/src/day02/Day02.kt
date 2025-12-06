@@ -1,44 +1,32 @@
 package day02
 
 import common.Source
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileReader
-
-const val INPUT_FILE = "src/day02/input.txt"
 
 fun main() {
-    val file = File(INPUT_FILE)
-    val fileReader = FileReader(file, Charsets.UTF_8)
-    val reader = BufferedReader(fileReader)
-    val source = Source(reader)
-    val scanner = Scanner(source)
-    val parser = Parser(scanner)
-    val program = parser.parseProgram()
+    val input = Parser(Scanner(Source.fromPath("src/day02/input.txt"))).parseInput()
 
-    var sum = 0L
-    for (range in program.ranges) {
+    var sum1 = 0L
+    var sum2 = 0L
+    for (range in input.ranges) {
         for (number in range) {
             val digits = number.toString(10)
-            if (hasPattern(digits)) {
-                sum += number
-            }
+            if (hasPattern1(digits)) sum1 += number
+            if (hasPattern2(digits)) sum2 += number
         }
     }
-    println(sum)
+    println(sum1)
+    println(sum2)
 }
 
-// Part 1:
-//fun hasPattern(digits: String): Boolean {
-//    if (digits.length % 2 != 0) {
-//        return false
-//    }
-//    val parts = digits.chunked(digits.length / 2)
-//    return parts[0] == parts[1]
-//}
+fun hasPattern1(digits: String): Boolean {
+    if (digits.length % 2 != 0) {
+        return false
+    }
+    val parts = digits.chunked(digits.length / 2)
+    return parts[0] == parts[1]
+}
 
-// Part 2:
-fun hasPattern(digits: String): Boolean {
+fun hasPattern2(digits: String): Boolean {
     // pattern length can't exceed half of number length
     val maxPatternLength = digits.length / 2
     for (i in 1..maxPatternLength) {

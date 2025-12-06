@@ -1,10 +1,13 @@
 package day03
 
-import day03.ast.Program
+import common.AbstractParser
+import common.AbstractScanner
+import common.Symbol
+import day03.ast.Input
 
-class Parser(private val scanner: Scanner) {
-    fun parseProgram(): Program {
-        return Program(parseBanks())
+class Parser(scanner: AbstractScanner) : AbstractParser(scanner) {
+    fun parseInput(): Input {
+        return Input(parseBanks())
     }
 
     private fun parseBanks(): List<String> {
@@ -20,6 +23,4 @@ class Parser(private val scanner: Scanner) {
         matchCurrentSymbol()
         return bank
     }
-
-    private fun matchCurrentSymbol() = scanner.advance()
 }
