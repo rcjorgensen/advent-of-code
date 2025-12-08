@@ -1,3 +1,3 @@
 package day08.ast
 
-class Input
+data class Input(val triples: List<Triple<Long, Long, Long>>)
