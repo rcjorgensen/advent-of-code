@@ -10,4 +10,12 @@ enum class Symbol {
     Right,
     Hyphen,
     Comma,
+    LeftParen,
+    RightParen,
+    LeftBracket,
+    RightBracket,
+    LeftBrace,
+    RightBrace,
+    Dot,
+    Hash,
 }
