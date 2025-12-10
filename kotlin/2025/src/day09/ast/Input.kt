@@ -1,3 +1,3 @@
 package day09.ast
 
-class Input
+data class Input(val coordinates: List<Pair<Int, Int>>)
