@@ -1,3 +1,3 @@
 package day12.ast
 
-class Input
+data class Input(val shapes: List<Shape>, val regions: List<Region>)

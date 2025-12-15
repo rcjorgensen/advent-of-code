@@ -5,7 +5,7 @@ import common.Source
 import common.Symbol
 import common.Token
 
-class Scanner(source: Source) : AbstractScanner(source, TODO("Set k")) {
+class Scanner(source: Source) : AbstractScanner(source, 2) {
     override fun nextToken(): Token {
         var symbol: Symbol
         var text = ""
@@ -18,7 +18,13 @@ class Scanner(source: Source) : AbstractScanner(source, TODO("Set k")) {
             symbol = Symbol.IntLiteral
             text = scanIntegerLiteral()
         } else {
-            TODO("Implement scanner")
+            symbol = when (source.currentChar.toChar()) {
+                ':' -> Symbol.Colon
+                '.' -> Symbol.Dot
+                '#' -> Symbol.Hash
+                'x' -> Symbol.Times
+                else -> error("Invalid character: '${source.currentChar.toChar()}")
+            }
             source.advance()
         }
 
