@@ -18,4 +18,6 @@ enum class Symbol {
     RightBrace,
     Dot,
     Hash,
+    Identifier,
+    Colon,
 }

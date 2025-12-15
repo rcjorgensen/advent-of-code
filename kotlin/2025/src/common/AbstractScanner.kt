@@ -30,6 +30,17 @@ abstract class AbstractScanner(protected val source: Source, k: Int) {
         while (Character.isWhitespace(source.currentChar.toChar())) source.advance()
     }
 
+    protected fun scanIdentifier(): String {
+        scanBuffer.clear()
+
+        do {
+            scanBuffer.append(source.currentChar.toChar())
+            source.advance()
+        } while (isLetter(source.currentChar.toChar()))
+
+        return scanBuffer.toString()
+    }
+
     protected fun scanIntegerLiteral(): String {
         scanBuffer.clear()
 
@@ -41,5 +52,6 @@ abstract class AbstractScanner(protected val source: Source, k: Int) {
         return scanBuffer.toString()
     }
 
+    protected fun isLetter(ch: Char): Boolean = (ch in 'a'..'z') || (ch in 'A'..'Z')
     protected fun isDigit(ch: Char): Boolean = ch in '0'..'9'
 }
